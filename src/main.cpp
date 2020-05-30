@@ -2,13 +2,30 @@
 #include "mgos_max17263.h"
 // struct MAX17263 *mx;
 
-void battery_stats()
+
+
+/*! \mainpage Battery SOC testing
+ *
+ * \section Documentation
+ *
+ * This is the introduction. Add some content....
+ *
+ * \section install_sec Installation
+ *
+ * \subsection step1 Step 1: Opening the box
+ *
+ * etc...
+ */
+
+
+
+
+/**> Get battery stats. */
+void battery_stats_cb()
 {
   if (mgos_max17263_battery_present())
   // without battery, status reading is 1111111111111111, so wait for Bst flag 1111111111110111
   {
-    LOG(LL_INFO, ("TCU: Battery SOC intializing"));
-    mgos_max17263_init();
     float capacity = mgos_max17263_get_Capacity_mAh();
     LOG(LL_INFO, ("TCU: Battery capacity in mAh = %.2f", capacity));
     float SOC = mgos_max17263_get_SOC();
@@ -24,10 +41,19 @@ void battery_stats()
   }
 }
 extern "C"
-{
+{ 
+
+  /**> MongooseOS app initialization function. */
   enum mgos_app_init_result mgos_app_init(void)
   {
+    LOG(LL_INFO, ("TCU: Battery SOC intializing"));
+    mgos_max17263_init();
     // setup wire library to configure max17263
+    mgos_set_timer(
+      1000,
+      MGOS_TIMER_REPEAT,
+      battery_stats_cb,
+      NULL);  
     return MGOS_APP_INIT_SUCCESS;
   }
 }
