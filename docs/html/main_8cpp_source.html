@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.19"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MAX17263 testing app: src/main.cpp Source File</title>
+<title>MAX17263 test app: src/main.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">MAX17263 testing app
+   <div id="projectname">MAX17263 test app
    </div>
   </td>
  </tr>
@@ -75,44 +75,44 @@ $(function() {
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="main_8cpp.html#a430df2092dd6b266b2822c34e0db28a2">   24</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="main_8cpp.html#a8af5f2c29c4132fdb80088690985f0e3">battery_stats_cb</a>()</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  <span class="keywordflow">if</span> (mgos_max17263_battery_present())</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="comment">// without battery, status reading is 1111111111111111, so wait for Bst flag 1111111111110111</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">float</span> capacity = mgos_max17263_get_Capacity_mAh();</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    LOG(LL_INFO, (<span class="stringliteral">&quot;TCU: Battery capacity in mAh = %.2f&quot;</span>, capacity));</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">float</span> SOC = mgos_max17263_get_SOC();</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    LOG(LL_INFO, (<span class="stringliteral">&quot;State of Charge value is: %.2f&quot;</span>, SOC));</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    int16_t current = mgos_max17263_get_current();</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    LOG(LL_INFO, (<span class="stringliteral">&quot;Current is: %.2f&quot;</span>, SOC));</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">float</span> TTE = mgos_max17263_get_TimeToEmpty();</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    LOG(LL_INFO, (<span class="stringliteral">&quot;Time to empty is: %.2f&quot;</span>, TTE));</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    LOG(LL_ERROR, (<span class="stringliteral">&quot;TCU: Battery SOC intializing failed.&quot;</span>));</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  }</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{ </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="keyword">enum</span> mgos_app_init_result <a class="code" href="main_8cpp.html#a430df2092dd6b266b2822c34e0db28a2">mgos_app_init</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    LOG(LL_INFO, (<span class="stringliteral">&quot;TCU: Battery SOC intializing&quot;</span>));</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    mgos_max17263_init();</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// setup wire library to configure max17263</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    mgos_set_timer(</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;      1000,</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;      MGOS_TIMER_REPEAT,</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;      <a class="code" href="main_8cpp.html#a8af5f2c29c4132fdb80088690985f0e3">battery_stats_cb</a>,</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;      NULL);  </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">return</span> MGOS_APP_INIT_SUCCESS;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="main_8cpp.html#a430df2092dd6b266b2822c34e0db28a2">   18</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="main_8cpp.html#a8af5f2c29c4132fdb80088690985f0e3">battery_stats_cb</a>()</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;  <span class="keywordflow">if</span> (mgos_max17263_battery_present())</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  <span class="comment">// without battery, status reading is 1111111111111111, so wait for Bst flag 1111111111110111</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">float</span> capacity = mgos_max17263_get_Capacity_mAh();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    LOG(LL_INFO, (<span class="stringliteral">&quot;TCU: Battery capacity in mAh = %.2f&quot;</span>, capacity));</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">float</span> SOC = mgos_max17263_get_SOC();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    LOG(LL_INFO, (<span class="stringliteral">&quot;State of Charge value is: %.2f&quot;</span>, SOC));</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    int16_t current = mgos_max17263_get_current();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    LOG(LL_INFO, (<span class="stringliteral">&quot;Current is: %.2f&quot;</span>, SOC));</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">float</span> TTE = mgos_max17263_get_TimeToEmpty();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    LOG(LL_INFO, (<span class="stringliteral">&quot;Time to empty is: %.2f&quot;</span>, TTE));</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    LOG(LL_ERROR, (<span class="stringliteral">&quot;TCU: Battery SOC intializing failed.&quot;</span>));</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{ </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keyword">enum</span> mgos_app_init_result <a class="code" href="main_8cpp.html#a430df2092dd6b266b2822c34e0db28a2">mgos_app_init</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    LOG(LL_INFO, (<span class="stringliteral">&quot;TCU: Battery SOC intializing&quot;</span>));</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    mgos_max17263_init();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// setup wire library to configure max17263</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    mgos_set_timer(</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;      1000,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;      MGOS_TIMER_REPEAT,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      <a class="code" href="main_8cpp.html#a8af5f2c29c4132fdb80088690985f0e3">battery_stats_cb</a>,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;      NULL);  </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">return</span> MGOS_APP_INIT_SUCCESS;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="amain_8cpp_html_a8af5f2c29c4132fdb80088690985f0e3"><div class="ttname"><a href="main_8cpp.html#a8af5f2c29c4132fdb80088690985f0e3">battery_stats_cb</a></div><div class="ttdeci">void battery_stats_cb()</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00024">main.cpp:24</a></div></div>
-<div class="ttc" id="amain_8cpp_html_a430df2092dd6b266b2822c34e0db28a2"><div class="ttname"><a href="main_8cpp.html#a430df2092dd6b266b2822c34e0db28a2">mgos_app_init</a></div><div class="ttdeci">enum mgos_app_init_result mgos_app_init(void)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00024">main.cpp:47</a></div></div>
+<div class="ttc" id="amain_8cpp_html_a8af5f2c29c4132fdb80088690985f0e3"><div class="ttname"><a href="main_8cpp.html#a8af5f2c29c4132fdb80088690985f0e3">battery_stats_cb</a></div><div class="ttdeci">void battery_stats_cb()</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00018">main.cpp:18</a></div></div>
+<div class="ttc" id="amain_8cpp_html_a430df2092dd6b266b2822c34e0db28a2"><div class="ttname"><a href="main_8cpp.html#a430df2092dd6b266b2822c34e0db28a2">mgos_app_init</a></div><div class="ttdeci">enum mgos_app_init_result mgos_app_init(void)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00018">main.cpp:41</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
